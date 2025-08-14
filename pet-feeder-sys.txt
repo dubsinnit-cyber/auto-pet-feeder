@@ -1,0 +1,23 @@
+SystemOn
+Loop every minute (
+    if BatteryLevel > 10%
+        if DeviceConfigured == True
+            if FoodLevel == True
+                if RealTime == SetFeedingTime
+                DispenseFood
+                BowlWeightBefore = weight of bowl now
+                Wait 30 minutes
+                BowlWeightAfter = weight of bowl now
+                if BowlWeightBefore = BowlWeightAfter
+                Finish
+            else
+                SendAlert("Please fill Device")
+                Wait 15 minutes
+        else
+            SendAlert("Please Configure Device")
+            Wait 15 minutes
+    else
+        SendAlert("Battery Level Low")
+        Wait 15 minutes
+)
+
