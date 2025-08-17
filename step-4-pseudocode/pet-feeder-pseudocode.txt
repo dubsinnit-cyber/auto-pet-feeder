@@ -1,0 +1,22 @@
+SystemOn
+Loop every minute ( //although this drains battery, if we dont loop every minute we risk it skipping over the feeding time
+    if BatteryLevel > 10% //checking if its out of battery
+        if DeviceConfigured == True
+            if FoodLevel == True
+                if RealTime == SetFeedingTime
+                DispenseFood
+                BowlWeightBefore = weight of bowl now
+                Wait 30 minutes
+                BowlWeightAfter = weight of bowl now
+                if BowlWeightBefore = BowlWeightAfter //to check if the pet has eaten
+                Finish
+            else
+                SendAlert("Please fill Device")
+                Wait 15 minutes
+        else
+            SendAlert("Please Configure Device")
+            Wait 15 minutes
+    else
+        SendAlert("Battery Level Low")
+        Wait 15 minutes
+)
